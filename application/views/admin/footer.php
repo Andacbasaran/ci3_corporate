@@ -4,8 +4,8 @@
 <!-- /.control-sidebar -->
 
 <!-- Main Footer -->
-<footer class="main-footer">
-    <strong>Copyright &copy; 2023 <a href="#" style="color: white;">Andaç Başaran</a>.</strong>
+<footer class="main-footer d-block">
+    <strong>Copyright &copy; <?= date('Y'); ?> <a href="#">Codeos Digital</a>.</strong>
     Tüm hakları saklıdır.
     <div class="float-right d-none d-sm-inline-block">
         <b>Version</b> 1.0.5

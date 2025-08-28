@@ -15,4 +15,10 @@ class Admin_Model extends CI_Model
             return false;
         }
     }
+    
+    public function getByEmail($email)
+    {
+        return $this->db->get_where('cd_admin', ['email' => $email])->row();
+    }
+
 }

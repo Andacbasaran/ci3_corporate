@@ -12,7 +12,7 @@
                 <div class="col-lg-6">
                     <div class="h-100 w-100 rounded shadow-sm overflow-hidden">
                         <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d192698.64616584027!2d28.847373971403847!3d41.00520413860978!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14caa7040068086b%3A0xe1ccfe98bc01b0d0!2zxLBzdGFuYnVs!5e0!3m2!1str!2str!4v1748194706904!5m2!1str!2str"
+                                src="<?= $companyData[0]->maps_code ?>"
                                 class="w-100 h-100 border-0"
                                 style="min-height: 100%;"
                                 allowfullscreen=""
@@ -62,7 +62,7 @@
                         <i class="bi bi-envelope fs-2 me-3"></i>
                         <div>
                             <h5>Merhaba De</h5>
-                            <a style="text-decoration: none; color: black" href="mailto:info@codeos.tr">info@codeos.tr</a>
+                            <a style="text-decoration: none; color: black" href="mailto:<?= $companyData[0]->mail ?>"><?= $companyData[0]->mail ?></a>
                         </div>
                     </div>
                 </div>
@@ -71,7 +71,7 @@
                         <i class="bi bi-geo-alt fs-2 me-3"></i>
                         <div>
                             <h5>Adres</h5>
-                            <p class="mb-0">İstanbul / Türkiye</p>
+                            <p class="mb-0"><?= $companyData[0]->address ?></p>
                         </div>
                     </div>
                 </div>
@@ -81,17 +81,34 @@
                         <div>
                             <h5>Sosyal Ağlarım</h5>
                             <div class="d-flex gap-2">
-                                <a target="_blank" href="https://www.linkedin.com/in/andaç-başaran-9aa319218" class="text-muted fs-5"><i class="bi bi-linkedin"></i></a>
-                                <a target="_blank" href="https://github.com/Andacbasaran" class="text-muted fs-5"><i class="bi bi-github"></i></a>
+                                <?php if (!empty($companyData[0]->linkedin)) : ?>
+                                    <a target="_blank" href="<?= $companyData[0]->linkedin ?>" class="text-muted fs-5"><i class="bi bi-linkedin"></i></a>
+                                <?php endif; ?>
+                                
+                                <?php if (!empty($companyData[0]->twitter)) : ?>
+                                    <a target="_blank" href="<?= $companyData[0]->twitter ?>" class="text-muted fs-5"><i class="bi bi-twitter"></i></a>
+                                <?php endif; ?>
+                                
+                                <?php if (!empty($companyData[0]->youtube)) : ?>
+                                    <a target="_blank" href="<?= $companyData[0]->youtube ?>" class="text-muted fs-5"><i class="bi bi-youtube"></i></a>
+                                <?php endif; ?> 
+                                
+                                <?php if (!empty($companyData[0]->facebook)) : ?>
+                                    <a target="_blank" href="<?= $companyData[0]->facebook ?>" class="text-muted fs-5"><i class="bi bi-facebook"></i></a>
+                                <?php endif; ?>
+                                
+                                <?php if (!empty($companyData[0]->instagram)) : ?>
+                                    <a target="_blank" href="<?= $companyData[0]->instagram ?>" class="text-muted fs-5"><i class="bi bi-instagram"></i></a>
+                                <?php endif; ?>
+                                
+                                <?php if (!empty($companyData[0]->github)) : ?>
+                                    <a target="_blank" href="<?= $companyData[0]->github ?>" class="text-muted fs-5"><i class="bi bi-github"></i></a>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <?php if (isset($iletisim)): ?>
-                <p class="mt-4 small text-muted">Yüklenme Süresi: <?php echo $iletisim; ?> saniye</p>
-            <?php endif; ?>
         </div>
     </section>
 </main>

@@ -17,6 +17,7 @@ class Contact extends CI_Controller
             $this->benchmark->mark('start_index');
         }
 
+        $data["companyData"] = $this->Contact_Model->get_company();
 
         $data["mainTittle"] = "İletişim | Andaç Başaran";
         $data["metaDescription"] = "İletişim";
@@ -29,83 +30,55 @@ class Contact extends CI_Controller
     // İletişim Formu AJAX İsteği
     public function postContactForm()
     {
-        if ($this->input->post("namesurname") == "") {
-            echo json_encode(array("status" => "warning", "tittle" => "Ad ve soyad alanı boş bırakılamaz."));
-            exit();
-        }
-        if ($this->input->post("email") == "") {
-            echo json_encode(array("status" => "warning", "tittle" => "E-Posta alanı boş bırakılamaz."));
-            exit();
-        }
-        $this->form_validation->set_rules('email', 'E-Posta', 'required|valid_email');
+        $this->load->library('form_validation');
+        $this->load->library('mailservice');
+        $this->load->model('Contact_Model');
 
-        if ($this->form_validation->run() == false) {
-            echo json_encode(array("status" => "warning", "tittle" => "Geçerli bir e-posta adresi girin."));
-            exit();
-        }
-        if ($this->input->post("subject") == "") {
-            echo json_encode(array("status" => "warning", "tittle" => "Konu boş bırakılamaz."));
-            exit();
-        }
-        if ($this->input->post("message") == "") {
-            echo json_encode(array("status" => "warning", "tittle" => "Mesaj boş bırakılamaz."));
-            exit();
+        $this->form_validation->set_rules('namesurname', 'Ad Soyad', 'required|trim');
+        $this->form_validation->set_rules('email', 'E-Posta', 'required|valid_email|trim');
+        $this->form_validation->set_rules('subject', 'Konu', 'required|trim');
+        $this->form_validation->set_rules('message', 'Mesaj', 'required|trim');
+
+        if ($this->form_validation->run() == FALSE) {
+            echo json_encode([
+                "status" => "warning",
+                "tittle" => validation_errors('<div>', '</div>')
+            ]);
+            return;
         }
 
-        if (isset($_POST) && !empty($_POST)) {
-            $form_data = array(
-                'namesurname' => $this->input->post('namesurname', true),
-                'email' => $this->input->post('email', true),
-                'subject' => $this->input->post('subject', true),
-                'message' => $this->input->post('message', true)
-            );
+        // Form verilerini al
+        $form_data = [
+            'namesurname' => $this->input->post('namesurname', TRUE),
+            'email'       => $this->input->post('email', TRUE),
+            'subject'     => $this->input->post('subject', TRUE),
+            'message'     => $this->input->post('message', TRUE),
+            'ip'          => $this->input->ip_address()
+        ];
 
-            $sonuc = $this->Contact_Model->ekle($form_data);
+        // Veritabanına kayıt
+        if ($this->Contact_Model->ekle($form_data)) {
 
-            if ($sonuc) {
-                $this->load->library('email');
+            // Mail gönder
+            $mail_sent = $this->mailservice->send_contact_mail($form_data);
 
-                $config['protocol'] = 'smtp';
-                $config['smtp_host'] = 'mail.codeos.tr';
-                $config['smtp_user'] = 'no-reply@codeos.tr';
-                $config['smtp_pass'] = 'kzuZc4jLVx$^asd/81';
-                $config['smtp_port'] = '465';
-                $config['smtp_crypto'] = 'ssl';
-                $config['smtp_timeout'] = '7';
-                $config['charset'] = 'utf-8';
-                $config['mailtype'] = 'text';
-                $config['validate'] = FALSE;
-                $config['wordwrap'] = true;
-
-                $alicilar = array(
-                    'info@codeos.tr',
-                    'andacbasaran69@gmail.com'
-                );
-
-                $this->email->initialize($config);
-                $this->email->set_newline("\r\n");
-                $this->email->to($alicilar);
-                $this->email->from('no-reply@codeos.tr' , 'Codeos Digital | İletişim');
-                $this->email->subject("Yeni İletişim Formu Bildirimi");
-
-                $emailContent = 'Sizinle iletişime geçmek isteyen birisi var, panelinizi kontrol edin lütfen.' . "\n\n";
-                $emailContent .= "Ad ve Soyad: " . $this->input->post('namesurname') . "\n\n";
-                $emailContent .= "E-Posta: " . $this->input->post('email') . "\n\n";
-                $emailContent .= "Konu: " . $this->input->post('subject') . "\n\n";
-                $emailContent .= "Mesaj: " . $this->input->post('message') . "\n\n";
-
-                $this->email->message($emailContent);
-
-                if ($this->email->send()) {
-                    echo json_encode(array("status" => "success", "tittle" => "Mesajınız başarı ile gönderildi"));
-                } else {
-                    echo json_encode(array("status" => "error", "tittle" => "Mesajınız gönderilirken bir hata oluştu."));
-                    echo $this->email->print_debugger();
-                }
+            if ($mail_sent) {
+                echo json_encode([
+                    "status" => "success",
+                    "tittle" => "Mesajınız başarıyla gönderildi."
+                ]);
             } else {
-                echo json_encode(array("status" => "error", "tittle" => "Mesajınız gönderilirken bir hata oluştu."));
+                echo json_encode([
+                    "status" => "error",
+                    "tittle" => "Mesaj kaydedildi fakat e-posta gönderilemedi."
+                ]);
             }
-            exit();
+
+        } else {
+            echo json_encode([
+                "status" => "error",
+                "tittle" => "Veritabanına kayıt sırasında bir hata oluştu."
+            ]);
         }
     }
 }

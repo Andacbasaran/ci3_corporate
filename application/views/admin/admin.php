@@ -78,11 +78,8 @@
                     <span class="info-box-icon bg-warning elevation-1"><i class="fa fa-book"></i></span>
 
                     <div class="info-box-content">
-                        <?php foreach ($bloglar as $blog):?>
-                        <?php endforeach ?>
-                        <?php $toplamBlog = count($bloglar); ?>
                         <span class="info-box-text">Yazılan Blog Sayısı</span>
-                        <span class="info-box-number"><?php echo $toplamBlog; ?></span>
+                        <span class="info-box-number"> 3 </span>
                     </div>
                     <!-- /.info-box-content -->
                 </div>

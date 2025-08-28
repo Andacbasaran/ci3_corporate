@@ -1,0 +1,31 @@
+<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>
+
+ERROR - 2025-08-19 04:28:29 --> 404 Page Not Found: Robotstxt/index
+ERROR - 2025-08-19 04:58:06 --> 404 Page Not Found: Env/index
+ERROR - 2025-08-19 05:41:42 --> 404 Page Not Found: Robotstxt/index
+ERROR - 2025-08-19 05:53:55 --> 404 Page Not Found: Robotstxt/index
+ERROR - 2025-08-19 07:29:39 --> 404 Page Not Found: Robotstxt/index
+ERROR - 2025-08-19 09:01:00 --> 404 Page Not Found: Wp-json/wp
+ERROR - 2025-08-19 15:06:29 --> 404 Page Not Found: Robotstxt/index
+ERROR - 2025-08-19 15:06:31 --> 404 Page Not Found: Robotstxt/index
+ERROR - 2025-08-19 16:23:09 --> 404 Page Not Found: Robotstxt/index
+ERROR - 2025-08-19 18:19:34 --> 404 Page Not Found: Wp-includes/wlwmanifest.xml
+ERROR - 2025-08-19 18:19:34 --> 404 Page Not Found: Xmlrpcphp/index
+ERROR - 2025-08-19 18:19:34 --> 404 Page Not Found: Blog/wp-includes
+ERROR - 2025-08-19 18:19:34 --> 404 Page Not Found: Web/wp-includes
+ERROR - 2025-08-19 18:19:35 --> 404 Page Not Found: Wordpress/wp-includes
+ERROR - 2025-08-19 18:19:35 --> 404 Page Not Found: Website/wp-includes
+ERROR - 2025-08-19 18:19:35 --> 404 Page Not Found: Wp/wp-includes
+ERROR - 2025-08-19 18:19:35 --> 404 Page Not Found: News/wp-includes
+ERROR - 2025-08-19 18:19:36 --> 404 Page Not Found: 2018/wp-includes
+ERROR - 2025-08-19 18:19:36 --> 404 Page Not Found: 2019/wp-includes
+ERROR - 2025-08-19 18:19:36 --> 404 Page Not Found: Shop/wp-includes
+ERROR - 2025-08-19 18:19:36 --> 404 Page Not Found: Wp1/wp-includes
+ERROR - 2025-08-19 18:19:37 --> 404 Page Not Found: Test/wp-includes
+ERROR - 2025-08-19 18:19:37 --> 404 Page Not Found: Media/wp-includes
+ERROR - 2025-08-19 18:19:37 --> 404 Page Not Found: Wp2/wp-includes
+ERROR - 2025-08-19 18:19:37 --> 404 Page Not Found: Site/wp-includes
+ERROR - 2025-08-19 18:19:37 --> 404 Page Not Found: Cms/wp-includes
+ERROR - 2025-08-19 18:19:38 --> 404 Page Not Found: Sito/wp-includes
+ERROR - 2025-08-19 20:24:53 --> 404 Page Not Found: Robotstxt/index
+ERROR - 2025-08-19 22:01:18 --> 404 Page Not Found: Robotstxt/index

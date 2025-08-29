@@ -1,0 +1,6 @@
+# index.php'yi ignore et
+/index.php
+
+# uploads klasörü boş gitsin
+/uploads/*
+!/uploads/.gitkeep

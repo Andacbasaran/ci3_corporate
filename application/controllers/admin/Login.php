@@ -48,8 +48,16 @@ class Login extends CI_Controller
             exit();
         }
 
+        $this->load->model('Settings_model');
+        // Tek değer
+        $secretKey = $this->Settings_Model->get('googlecaptchakey');
+
+        // Tüm ayarlar
+        //$settings = $this->Settings_model->get_all(); echo $settings['site_name'];
+
+
         // Google reCAPTCHA v2 doğrulaması
-        $secret = '6LeGcJ8rAAAAADsvhDDj8K7B8uNiuPKFQcCw7Zk4';
+        $secret = $secretKey;
         $verify_response = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$secret}&response={$recaptcha_response}&remoteip=" . $this->input->ip_address());
         $responseData = json_decode($verify_response);
 

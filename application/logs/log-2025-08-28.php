@@ -82,3 +82,5 @@ ERROR - 2025-08-28 16:15:49 --> Severity: Warning --> Undefined variable $pagina
 ERROR - 2025-08-28 16:15:49 --> 404 Page Not Found: Assets/front
 ERROR - 2025-08-28 17:31:15 --> 404 Page Not Found: Robotstxt/index
 ERROR - 2025-08-28 17:31:15 --> 404 Page Not Found: Robotstxt/index
+ERROR - 2025-08-28 20:41:44 --> Severity: Warning --> Undefined variable $pagination /home/codeostr/public_html/codeos.tr/application/views/front/blog/list.php 60
+ERROR - 2025-08-28 20:41:45 --> 404 Page Not Found: Assets/front
